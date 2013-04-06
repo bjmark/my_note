@@ -9,7 +9,7 @@
 
 <p>
 <%@categories.each do|e|%>
-  <%=e.name%>
+  <%=link_to e.name,notes_path(:word=>e.name)%>
   <%=',' if e != @categories.last%>
 <%end%>
 </p>
