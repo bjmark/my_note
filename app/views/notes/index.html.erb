@@ -1,0 +1,26 @@
+<p>
+<%=link_to 'New', new_note_path%>
+</p>
+
+<%= form_tag(notes_path,:method=>'get') do%>
+  <%=search_field_tag(:word,params[:word])%>
+  <%=submit_tag 'search'%>
+<%end%>
+
+<p>
+<%@categories.each do|e|%>
+  <%=e.name%>
+  <%=',' if e != @categories.last%>
+<%end%>
+</p>
+
+<div>
+  <%@notes.each do |t|%>
+    <p>
+    <%=text_area_tag :content,t.content,:cols=>80,:rows=>10%>
+    <br/>
+    <%=link_to 'Edit', edit_note_path(t)%>
+    </p>
+  <%end%>
+</div>
+
