@@ -1,0 +1,5 @@
+<%categories.each do|e|%>
+  <%=link_to e.name,notes_path(:word=>e.name)%>
+  <%=',' if e != categories.last%>
+<%end%>
+

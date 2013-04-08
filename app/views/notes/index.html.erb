@@ -8,14 +8,14 @@
 <%end%>
 
 <p>
-<%@categories.each do|e|%>
-  <%=link_to e.name,notes_path(:word=>e.name)%>
-  <%=',' if e != @categories.last%>
-<%end%>
+<%=render 'category_links',:categories=>@categories%>
 </p>
 
 <div>
   <%@notes.each do |t|%>
+    <p>
+    <%=render 'category_links',:categories=>t.categories%>
+    </p>
     <p>
     <%=text_area_tag :content,t.content,:cols=>80,:rows=>10%>
     <br/>
