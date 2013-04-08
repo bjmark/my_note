@@ -19,9 +19,10 @@ describe Note do
 
     note_id = note.id
 
-    note.delete2
+    note.reload.delete2
     Note.where(:id=>note_id).should be_blank
-    Category.count.should == 0
     CategoriesNotes.count.should == 0
+    Category.count.should == 0
   end
+
 end
