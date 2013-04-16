@@ -2,6 +2,11 @@
 require 'spec_helper'
 
 describe Category do
+  specify 'check_name' do
+    s = [' ruby   rails ','  ', 'spork'].join("\n")
+    Category.check_name(s).should == ['ruby rails','spork']
+  end
+
   specify 'find_or_create' do
     #<find>
     c1 = Category.find_or_create('ruby')
@@ -20,9 +25,10 @@ describe Category do
   end
 
   specify 'search' do
-    c1 = Category.find_or_create('ruby')
+    c1 = Category.find_or_create('ruby rails')
     c3 = Category.find_or_create('ruby1')
     Category.search('ruby').size.should == 2
+    Category.search('ru rai').size.should == 1
   end
 
   specify 'bulk_create' do 

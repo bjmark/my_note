@@ -5,11 +5,7 @@ class NotesController < ApplicationController
       @categories = []
       @notes = []
     else
-      @categories = Category.search(word)
-      
-      category_ids = @categories.collect{|e| e.id}
-      note_ids = CategoriesNotes.where(:category_id=>category_ids).collect{|e| e.note_id}
-      @notes = Note.where(:id=>note_ids)
+      @notes,@categories = Note.search(word)
     end
   end
 

@@ -9,8 +9,8 @@ class Category < ActiveRecord::Base
   end
 
   def self.check_name(s)
-    names = s.split("\n")
-    names = names.reject{|e| e.strip.size == 0}
+    names = s.split("\n").collect{|e| e.strip}
+    names = names.reject{|e| e.size == 0}
     names = names.collect{|e| e.split(/\s+/).join(' ')}
     names.uniq
   end
@@ -45,5 +45,21 @@ class Category < ActiveRecord::Base
     end
   end
 
-  scope :search, lambda {|s| where("name like ?", "#{s}%") }
+  #scope :search, lambda {|s| where("name like ?", "#{s}%") }
+  def self.search(s)
+    words = s.split(" ")
+    return [] if words.empty?
+
+    w1 = words.shift
+    self.where("name like ?", "#{w1}%").reject do |e|
+      a = e.name.split(' ')
+      a.shift
+      
+      words.find do |w|
+        a1 = a.shift
+        next true unless a1
+        next true unless a1.start_with?(w)
+      end
+    end
+  end
 end
