@@ -12,14 +12,15 @@
 </p>
 
 <div>
-  <%@notes.each do |t|%>
+  <%@notes.each do |e|%>
+    <%n,g = e %>
     <p>
-    <%=render 'category_links',:categories=>t.categories%>
+    <%=render 'category_links',:categories=>n.categories%>
+    <div style="border:1px dotted;background:none repeat scroll 0 0 #F5F5F5;padding:10px;">
+    <%=raw g%>
+    </div>
     </p>
-    <p>
-    <%=text_area_tag :content,t.content,:cols=>80,:rows=>10%>
-    <br/>
-    <%=link_to 'Edit', edit_note_path(t)%>
+    <%=link_to 'Edit', edit_note_path(n)%>
     </p>
   <%end%>
 </div>

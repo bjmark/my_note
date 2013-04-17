@@ -1,3 +1,5 @@
+require 'coderay'
+
 class NotesController < ApplicationController
   def index
     word = params[:word]
@@ -6,6 +8,10 @@ class NotesController < ApplicationController
       @notes = []
     else
       @notes,@categories = Note.search(word)
+      @notes = @notes.collect do |e|
+        high = CodeRay.scan(e.content, :ruby).div
+        [e,high]
+      end
     end
   end
 
