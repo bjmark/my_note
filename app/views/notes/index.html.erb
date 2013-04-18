@@ -16,9 +16,7 @@
     <%n,g = e %>
     <p>
     <%=render 'category_links',:categories=>n.categories%>
-    <div style="border:1px dotted;background:none repeat scroll 0 0 #F5F5F5;padding:10px;">
     <%=raw g%>
-    </div>
     </p>
     <%=link_to 'Edit', edit_note_path(n)%>
     </p>

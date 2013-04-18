@@ -9,7 +9,7 @@ class NotesController < ApplicationController
     else
       @notes,@categories = Note.search(word)
       @notes = @notes.collect do |e|
-        high = CodeRay.scan(e.content, :ruby).div
+        high = CodeRay.scan(e.content, :ruby).div(:css => :class)
         [e,high]
       end
     end
