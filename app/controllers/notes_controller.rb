@@ -1,4 +1,6 @@
 require 'coderay'
+require "RedCloth"
+require "redclothcoderay"
 
 class NotesController < ApplicationController
   def index
@@ -9,8 +11,14 @@ class NotesController < ApplicationController
     else
       @notes,@categories = Note.search(word)
       @notes = @notes.collect do |e|
-        high = CodeRay.scan(e.content, :ruby).div(:css => :class)
-        [e,high]
+        #high = CodeRay.scan(e.content, :ruby).div(:css => :class)
+        #high = RedCloth.new(e.content).to_html
+        text = e.content
+        text = text.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
+          code = CodeRay.scan($3, $2).div(:css => :class)
+          "<notextile>#{code}</notextile>"
+        end
+        [e,RedCloth.new(text).to_html]
       end
     end
   end
@@ -40,7 +48,7 @@ class NotesController < ApplicationController
     @path = note_path(@note)
     @method = 'put'
     @content = @note.content
-    
+
     @names = @note.categories.collect{|e| e.name}
   end
 
@@ -50,7 +58,7 @@ class NotesController < ApplicationController
     note.save
 
     Category.bulk_update(note,params[:names])
-    
+
     redirect_to notes_path
   end
 

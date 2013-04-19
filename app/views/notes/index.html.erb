@@ -16,6 +16,8 @@
     <%n,g = e %>
     <p>
     <%=render 'category_links',:categories=>n.categories%>
+    </p>
+    <p>
     <%=raw g%>
     </p>
     <%=link_to 'Edit', edit_note_path(n)%>
