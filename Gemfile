@@ -29,5 +29,6 @@ gem 'coderay'
 group :development, :test do
   #   gem 'webrat'
   gem "rspec-rails", "~> 2.0"
+  gem "capybara", "~> 2.1.0"
   gem "spork", "~> 0.9.2"
 end

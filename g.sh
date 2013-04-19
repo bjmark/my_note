@@ -2,6 +2,9 @@
 #rails g model tag, it is a mistake
 #rails g model category
 #rails g model categories_2_notes
-RAILS_ENV=test rake db:schema:load
+#rake db:schema:dump
+#RAILS_ENV=test rake db:schema:load
+
+rails g integration_test search
 
 #rails g controller notes 
