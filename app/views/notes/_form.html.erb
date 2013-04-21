@@ -1,12 +1,9 @@
 <%=form_tag @path,:method=>@method do%>
-  <p>
-  <%=label_tag :content,'content'%>
-  <br/>
-  <%=text_area_tag :content,@content,:cols=>80,:rows=>10%>
-  </p>
-  <p>
-  <%=label_tag :names,'names'%><br/>
-  <%=text_area_tag :names,@names.join("\n"),:cols=>80,:rows=>3%>
-  </p>
+  <fieldset>
+    <label>Content</label>
+    <textarea id="content" name="content" rows="6" style="width:600px;"><%=@content%></textarea>
+    <label>Names</label>
+    <textarea id="names" name="names" rows="3" style="width:600px;"><%=@names.join("\n")%></textarea>
+  </fieldset>
   <%=submit_tag 'Save'%>
 <%end%>

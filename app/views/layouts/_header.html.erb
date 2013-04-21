@@ -1,0 +1,11 @@
+<div class="masthead">
+  <ul class="nav nav-pills pull-right">
+    <%-if ['/','/notes'].include?(request.path) %>
+      <li class="active"><a href="/">Home</a></li>
+    <%-else%>
+      <li><a href="/">Home</a></li>
+    <%-end%>
+  </ul>
+  <h3 class="muted">My notes</h3>
+</div>
+

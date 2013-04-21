@@ -1,5 +1,8 @@
-<%categories.each do|e|%>
-  <%=link_to e.name,notes_path(:word=>e.name)%>
-  <%=',' if e != categories.last%>
-<%end%>
+<ul class="inline">
+  <%categories.each do|e|%>
+    <li>
+    <%=link_to e.name,notes_path(:word=>e.name)%>
+    </li>
+  <%end%>
+</ul>
 

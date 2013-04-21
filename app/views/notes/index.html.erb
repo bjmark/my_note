@@ -1,27 +1,24 @@
-<p>
-<%=link_to 'New', new_note_path%>
-</p>
-
-<%= form_tag(notes_path,:method=>'get') do%>
-  <%=search_field_tag(:word,params[:word])%>
-  <%=submit_tag 'search'%>
+<section id="search">
+<%= form_tag(notes_path,:method=>'get',:class=>'form-search') do%>
+  <%=search_field_tag(:word,params[:word],:class=>"input-medium search-query")%>
+  <button type="submit" class="btn">Search</button>
+  <span style="padding-left:30px;"><a href="/notes/new">New</a></span>
 <%end%>
-
-<p>
-<%=render 'category_links',:categories=>@categories%>
-</p>
-
+</section>
 <div>
-  <%@notes.each do |e|%>
-    <%n,g = e %>
-    <p>
-    <%=render 'category_links',:categories=>n.categories%>
-    </p>
-    <p>
-    <%=raw g%>
-    </p>
-    <%=link_to 'Edit', edit_note_path(n)%>
-    </p>
-  <%end%>
+<%=render 'category_links',:categories=>@categories%>
 </div>
+
+<%@notes.each do |e|%>
+  <hr>
+  <%n,g = e %>
+  <p>
+  <%=render 'category_links',:categories=>n.categories%>
+  </p>
+  <p>
+  <%=raw g%>
+  </p>
+  <%=link_to 'Edit', edit_note_path(n)%>
+  </p>
+<%end%>
 
