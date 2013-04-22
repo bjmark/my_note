@@ -11,8 +11,6 @@ class NotesController < ApplicationController
     else
       @notes,@categories = Note.search(word)
       @notes = @notes.collect do |e|
-        #high = CodeRay.scan(e.content, :ruby).div(:css => :class)
-        #high = RedCloth.new(e.content).to_html
         text = e.content
         text = text.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
           code = CodeRay.scan($3, $2).div(:css => :class)
