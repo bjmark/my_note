@@ -5,10 +5,12 @@ require "redclothcoderay"
 class NotesController < ApplicationController
   def index
     word = params[:word]
+    @searches = Search.order("id desc").limit(10)
     if word.blank?
       @categories = []
       @notes = []
     else
+      Search.add(word)
       @notes,@categories = Note.search(word)
       @notes = @notes.collect do |e|
         text = e.content

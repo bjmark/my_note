@@ -1,4 +1,5 @@
 <section id="search">
+<%=render 'searches',:searches=>@searches,:name=>'word'%>
 <%= form_tag(notes_path,:method=>'get',:class=>'form-search') do%>
   <%=search_field_tag(:word,params[:word],:class=>"input-medium search-query")%>
   <button type="submit" class="btn">Search</button>
@@ -6,19 +7,18 @@
 <%end%>
 </section>
 <div>
-<%=render 'category_links',:categories=>@categories%>
+  <%=render 'searches',:searches=>@categories,:name=>'name'%>
 </div>
 
 <%@notes.each do |e|%>
   <hr>
   <%n,g = e %>
   <p>
-  <%=render 'category_links',:categories=>n.categories%>
+  <%=render 'searches',:searches=>n.categories,:name=>'name'%>
   </p>
-  <p>
+  <div>
   <%=raw g%>
-  </p>
+  </div>
   <%=link_to 'Edit', edit_note_path(n)%>
-  </p>
 <%end%>
 
