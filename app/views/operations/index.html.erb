@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Operation</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@operations.each do |e|%>
+      <tr>
+        <td><%=e.created_at%></td>
+        <td><%=e.operation%></td>
+        <td>
+          <%if ['create','update'].include?(e.operation)%>
+            <%= raw e.content.split(',').collect{|c| link_to c,notes_path(:word=>c)}.join(',')%>
+          <%else%>
+            <%=e.content%>
+          <%end%>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

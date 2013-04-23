@@ -25,4 +25,11 @@ describe Note do
     Category.count.should == 0
   end
 
+  specify 'search' do
+    note = Note.create!(:content=>'aaa')
+    names = ['ruby','rails'].join("\n")
+    Category.bulk_create(note,names)
+
+    Note.search('ruby')[0].size.should == 1
+  end
 end

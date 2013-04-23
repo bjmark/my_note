@@ -7,4 +7,6 @@
 #rails g integration_test search
 #rails g controller notes 
 
-rails g model search
+#rails g model search
+#rails g model operation
+rails g controller operations 

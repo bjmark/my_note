@@ -5,6 +5,13 @@
     <%-else%>
       <li><a href="/">Home</a></li>
     <%-end%>
+    <%if request.path=='/operations'%>
+      <li class="active">
+    <%else%>
+      <li>
+    <%end%>
+    <a href="/operations">Operation</a>
+    </li>
   </ul>
   <h3 class="muted">My notes</h3>
 </div>

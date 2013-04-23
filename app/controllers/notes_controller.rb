@@ -36,10 +36,12 @@ class NotesController < ApplicationController
 
     names = params[:names]
     names << "\n#{Date.today}"
-    names << "\n#{note.id}"
+    names << "\n##{note.id}"
 
     categories = Category.bulk_create(note,names)
-    redirect_to notes_path
+    
+    Operation.create!(:operation=>'create',:content=>names.split("\n").join(','))
+    redirect_to notes_path(:word=>"##{note.id}")
   end
 
   def edit
@@ -59,12 +61,16 @@ class NotesController < ApplicationController
 
     Category.bulk_update(note,params[:names])
 
-    redirect_to notes_path
+    Operation.create!(:operation=>'update',:content=>params[:names].split("\n").join(','))
+    redirect_to notes_path(:word=>"##{note.id}")
   end
 
   def destroy
     note = Note.find(params[:id])
+    names = note.categories.collect{|e| e.name}.join(",")
     note.delete2
+    
+    Operation.create!(:operation=>'destroy',:content=>names)
     redirect_to notes_path
   end
 end
