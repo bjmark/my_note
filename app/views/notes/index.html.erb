@@ -19,6 +19,13 @@
   <div>
   <%=raw g%>
   </div>
-  <%=link_to 'Edit', edit_note_path(n)%>
+<ul class="inline">
+    <li>
+    <%=link_to 'Edit', edit_note_path(n)%>
+    </li>
+    <li>
+    <%=link_to 'New-this', new_note_path(:id=>n.id)%>
+    </li>
+</ul>
 <%end%>
 
