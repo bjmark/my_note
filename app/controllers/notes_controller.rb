@@ -11,7 +11,12 @@ class NotesController < ApplicationController
       @notes = []
     else
       Search.add(word)
-      @notes,@categories = Note.search(word)
+      case 
+      when params[:like]
+        @notes,@categories = Note.search(word,:like)
+      else
+        @notes,@categories = Note.search(word)
+      end
       @notes = @notes.collect do |e|
         text = e.content
         text = text.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do

@@ -2,7 +2,8 @@
 <%=render 'searches',:searches=>@searches,:name=>'word'%>
 <%= form_tag(notes_path,:method=>'get',:class=>'form-search') do%>
   <%=search_field_tag(:word,params[:word],:class=>"input-medium search-query")%>
-  <button type="submit" class="btn">Search</button>
+  <button type="submit" class="btn" name="search">Search</button>
+  <button type="submit" class="btn" name="like">Like</button>
   <span style="padding-left:30px;"><a href="/notes/new">New</a></span>
 <%end%>
 </section>

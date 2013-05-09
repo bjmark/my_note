@@ -45,7 +45,8 @@ class Category < ActiveRecord::Base
     end
   end
 
-  #scope :search, lambda {|s| where("name like ?", "#{s}%") }
+  scope :like, lambda {|s| where("name like ?", "%#{s}%") }
+  
   def self.search(s)
     words = s.split(" ")
     return [] if words.empty?

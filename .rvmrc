@@ -1,1 +1,1 @@
-rvm gemset use rails3.0
+rvm gemset use my_note
