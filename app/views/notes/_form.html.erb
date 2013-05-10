@@ -1,9 +1,9 @@
 <%=form_tag @path,:method=>@method do%>
   <fieldset>
     <label>Content</label>
-    <textarea id="content" name="content" rows="6" style="width:600px;"><%=@content%></textarea>
+    <textarea id="content" name="content" rows="12" style="width:800px;"><%=@content%></textarea>
     <label>Names</label>
-    <textarea id="names" name="names" rows="3" style="width:600px;"><%=@names.join("\n")%></textarea>
+    <textarea id="names" name="names" rows="3" style="width:800px;"><%=@names.join("\n")%></textarea>
   </fieldset>
   <%=submit_tag 'Save'%>
 <%end%>
