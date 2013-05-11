@@ -1,18 +1,15 @@
-<div class="masthead">
-  <ul class="nav nav-pills pull-right">
-    <%-if ['/','/notes'].include?(request.path) %>
-      <li class="active"><a href="/">Home</a></li>
-    <%-else%>
-      <li><a href="/">Home</a></li>
-    <%-end%>
-    <%if request.path=='/operations'%>
-      <li class="active">
-    <%else%>
-      <li>
-    <%end%>
-    <a href="/operations">Operation</a>
-    </li>
-  </ul>
-  <h3 class="muted">My notes</h3>
+<div class="site-name">
+  My notes
 </div>
+<ul class="nav">
+  <%- nav = {'Home'=>'/','Operation'=>'/operations'}%>
+  <%- cur_path = request.path%>
+  <%- cur_path = '/' if cur_path == '/notes'%>
+  <%- nav.each do |k,v|%>
+    <%- s = cur_path == v ? 'active' : ''%>
+    <li class="<%=s%>">
+    <a href="<%=v%>"><%=k%></a>
+    </li>
+  <%- end%>
+</ul>
 
