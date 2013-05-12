@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff;
+}
+
+form {
+  margin: 0 0 20px;
+}
+
+fieldset {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+table {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+}
+
+.table {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.site-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #999999;
+  line-height: 40px;
+  margin: 10px,0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.nav .item {
+  padding-right: 10px;
+}
+
+.nav .active {
+  font-weight: bold;
+}
+
+#search-form {
+  margin: 20px 0;
+}
+
+.note {
+  padding: 3px 7px;
+  margin: 10px 0;
+  background-color: #F9F9F9;
+  font-size: 12px;
+}
+
+.note .CodeRay {
+  padding: 10px;
+  border: 1px dashed #2F6FAB;
+}
+
+div.searches {
+  margin: 10px 0;
+}
+
+.searches .word {
+  font-size: 12px;
+  padding: 2px 4px;
+  white-space: nowrap;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+}
+
+a {
+  text-decoration: none;
+  color: #0088CC;
+}
+
+

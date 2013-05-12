@@ -1,8 +1,4 @@
-<ul class="inline">
-  <%searches.each do|e|%>
-    <li>
-    <%=link_to e.send(name),notes_path(:word=>e.send(name))%>
-    </li>
-  <%end%>
-</ul>
+<%searches.each do|e|%>
+  <%=link_to e.send(name),notes_path(:word=>e.send(name)),:class=>'word'%>
+<%end%>
 

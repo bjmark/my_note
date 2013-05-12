@@ -1,32 +1,32 @@
-<section id="search">
-<%=render 'searches',:searches=>@searches,:name=>'word'%>
-<%= form_tag(notes_path,:method=>'get',:class=>'form-search') do%>
+<div class="searches">
+  <%=render 'searches',:searches=>@searches,:name=>'word'%>
+</div>
+
+<%= form_tag(notes_path,:method=>'get',:id=>"search-form") do%>
   <%=search_field_tag(:word,params[:word],:class=>"input-medium search-query")%>
-  <button type="submit" class="btn" name="search">Search</button>
-  <button type="submit" class="btn" name="like">Like</button>
+  <button type="submit" name="search">Search</button>
+  <button type="submit" name="like">Like</button>
   <span style="padding-left:30px;"><a href="/notes/new">New</a></span>
 <%end%>
-</section>
-<div>
+
+<div class="searches">
   <%=render 'searches',:searches=>@categories,:name=>'name'%>
 </div>
 
 <%@notes.each do |e|%>
   <hr>
   <%n,g = e %>
-  <p>
-  <%=render 'searches',:searches=>n.categories,:name=>'name'%>
-  </p>
-  <div>
-  <%=raw g%>
+  <div class="searches">
+    <%=render 'searches',:searches=>n.categories,:name=>'name'%>
   </div>
-<ul class="inline">
-    <li>
+
+  <div class="note">
+    <%=raw g%>
+  </div>
+  
+  <div>
     <%=link_to 'Edit', edit_note_path(n)%>
-    </li>
-    <li>
     <%=link_to 'New-this', new_note_path(:id=>n.id)%>
-    </li>
-</ul>
+  </div>
 <%end%>
 

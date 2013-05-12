@@ -1,15 +1,13 @@
 <div class="site-name">
   My notes
 </div>
-<ul class="nav">
+<div class="nav">
   <%- nav = {'Home'=>'/','Operation'=>'/operations'}%>
   <%- cur_path = request.path%>
   <%- cur_path = '/' if cur_path == '/notes'%>
   <%- nav.each do |k,v|%>
     <%- s = cur_path == v ? 'active' : ''%>
-    <li class="<%=s%>">
-    <a href="<%=v%>"><%=k%></a>
-    </li>
+    <a class="item <%= s%>" href="<%= v%>"><%= k%></a>
   <%- end%>
-</ul>
+</div>
 
