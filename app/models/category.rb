@@ -48,6 +48,8 @@ class Category < ActiveRecord::Base
   scope :like, lambda {|s| where("name like ?", "%#{s}%") }
   
   def self.search(s)
+    return self.where(:name=>s) if s.start_with?('#')
+
     words = s.split(" ")
     return [] if words.empty?
 
