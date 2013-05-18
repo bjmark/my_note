@@ -1,10 +1,12 @@
 <%=form_tag @path,:method=>@method do%>
   <fieldset>
     <label>Content</label>
-    <textarea id="content" name="content" rows="12" style="width:800px;"><%=@content%></textarea>
+    <textarea id="note-content" name="content" rows="12" style="width:800px;"><%=@content%></textarea>
     <label>Names</label>
     <textarea id="names" name="names" rows="3" style="width:800px;"><%=@names.join("\n")%></textarea>
   </fieldset>
   <%=submit_tag 'Save'%>
+  <%=link_to_function 'Tab2Space',"tab2space()"%>
   <%=link_to 'Delete',note_path(@note),:method=>'delete',:confirm =>'Are you sure?' if @method == 'put'%>
 <%end%>
+<%= javascript_include_tag 'notes' %>
