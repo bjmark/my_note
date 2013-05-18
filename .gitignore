@@ -4,3 +4,4 @@ tmp/
 *.swp
 db/*.sqlite3
 public/stylesheets/.sass-cache/
+Gemfile.lock

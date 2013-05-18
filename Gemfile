@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'coderay'
 gem "RedCloth", :require => 'redcloth'
 gem "redclothcoderay", "~> 0.3.6"
+gem "jquery-rails"
 
 # Use unicorn as the web server
 # gem 'unicorn'
