@@ -6,4 +6,5 @@
     <textarea id="names" name="names" rows="3" style="width:800px;"><%=@names.join("\n")%></textarea>
   </fieldset>
   <%=submit_tag 'Save'%>
+  <%=link_to 'Delete',note_path(@note),:method=>'delete',:confirm =>'Are you sure?' if @method == 'put'%>
 <%end%>
