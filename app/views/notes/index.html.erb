@@ -29,4 +29,5 @@
     <%=link_to 'New-this', new_note_path(:id=>n.id)%>
   </div>
 <%end%>
-
+<br/>
+<%=paginate @notes %>

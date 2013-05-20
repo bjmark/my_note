@@ -26,6 +26,7 @@ class NotesController < ApplicationController
         [e,RedCloth.new(text).to_html]
       end
     end
+    @notes = Kaminari.paginate_array(@notes).page(params[:page]).per(3)
   end
 
   def new
