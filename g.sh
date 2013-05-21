@@ -9,4 +9,6 @@
 
 #rails g model search
 #rails g model operation
-rails g controller operations 
+#rails g controller operations 
+
+rails g migration add_path_to_search 

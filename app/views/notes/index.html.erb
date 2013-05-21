@@ -1,5 +1,5 @@
 <div class="searches">
-  <%=render 'searches',:searches=>@searches,:name=>'word'%>
+  <%=render 'searches'%>
 </div>
 
 <%= form_tag(notes_path,:method=>'get',:id=>"search-form") do%>
@@ -10,14 +10,14 @@
 <%end%>
 
 <div class="searches">
-  <%=render 'searches',:searches=>@categories,:name=>'name'%>
+  <%=render 'names',:searches=>@categories,:name=>'name'%>
 </div>
 
 <%@notes.each do |e|%>
   <hr>
   <%n,g = e %>
   <div class="searches">
-    <%=render 'searches',:searches=>n.categories,:name=>'name'%>
+    <%=render 'names',:searches=>n.categories,:name=>'name'%>
   </div>
 
   <div class="note">

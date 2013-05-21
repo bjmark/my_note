@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423092519) do
+ActiveRecord::Schema.define(:version => 20130521092015) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20130423092519) do
 
   create_table "searches", :force => true do |t|
     t.string "word"
+    t.string "kind"
   end
 
 end

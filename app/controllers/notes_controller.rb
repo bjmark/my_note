@@ -10,12 +10,13 @@ class NotesController < ApplicationController
       @categories = []
       @notes = []
     else
-      Search.add(word)
       case 
       when params[:like]
         @notes,@categories = Note.search(word,:like)
+        Search.add(word,'like')
       else
         @notes,@categories = Note.search(word)
+        Search.add(word,'search')
       end
       @notes = @notes.collect do |e|
         text = e.content

@@ -1,4 +1,4 @@
-<%searches.each do|e|%>
-  <%=link_to e.send(name),notes_path(:word=>e.send(name)),:class=>'word'%>
+<%@searches.each do|e|%>
+  <%=link_to e.word,notes_path(:word=>e.word,e.kind=>''),:class=>'word'%>
 <%end%>
 
