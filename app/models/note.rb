@@ -20,7 +20,7 @@ class Note < ActiveRecord::Base
   end
 
   def self.search_index(word)
-    note_ids = ContentIndex.where(:word=>word).collect{|e| e.note_id}
+    note_ids = ContentIndex.where('word like ?',"#{word}%").collect{|e| e.note_id}
     notes = Note.where(:id=>note_ids)
     [notes,[]]
   end
