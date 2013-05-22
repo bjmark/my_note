@@ -12,7 +12,9 @@ describe ContentIndex do
     note2 = Note.create!(:content=>"git merge")
     ContentIndex.add_note(note1)
     ContentIndex.add_note(note2)
-    ContentIndex.add_note(note1)
-    ContentIndex.where(:word=>'git').first.hit_ids.split(',').sort.should == [note1.id.to_s,note2.id.to_s]
+    ContentIndex.where(:word=>'git').count.should == 2
+
+    ContentIndex.del_note(note2)
+    ContentIndex.where(:word=>'git').count.should == 1
   end
 end

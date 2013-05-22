@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(:version => 20130522062247) do
   add_index "categories_notes", ["note_id"], :name => "index_categories_notes_on_note_id"
 
   create_table "content_indices", :force => true do |t|
-    t.string "word"
-    t.string "hit_ids"
+    t.string  "word"
+    t.integer "note_id"
   end
 
+  add_index "content_indices", ["note_id"], :name => "index_content_indices_on_note_id"
   add_index "content_indices", ["word"], :name => "index_content_indices_on_word"
 
   create_table "notes", :force => true do |t|

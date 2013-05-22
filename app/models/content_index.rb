@@ -1,24 +1,17 @@
 class ContentIndex < ActiveRecord::Base
+  belongs_to :note
+
+  def self.del_note(note)
+    ContentIndex.delete_all("note_id = #{note.id}")
+  end
+
   def self.add_note(note)
     words = filter_out_word(note.content)
+    rec = []
     words.each do |e|
-      c = ContentIndex.where(:word=>e).first
-      c = ContentIndex.new(:word=>e) if c.blank?
-      
-      if c.hit_ids.blank?
-        ids = []
-      else
-        ids = c.hit_ids.split(',')
-      end
-
-      note_id = note.id.to_s
-      
-      ids = ids.reject{|i| i == note_id}
-      ids << note_id
-
-      c.hit_ids = ids.join(',')
-      c.save
+      rec << {:word=>e,:note_id=>note.id}
     end
+    ContentIndex.create!(rec)
   end
 
   def self.filter_out_word(str)
