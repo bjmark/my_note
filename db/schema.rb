@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521092015) do
+ActiveRecord::Schema.define(:version => 20130522062247) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20130521092015) do
 
   add_index "categories_notes", ["category_id"], :name => "index_categories_notes_on_category_id"
   add_index "categories_notes", ["note_id"], :name => "index_categories_notes_on_note_id"
+
+  create_table "content_indices", :force => true do |t|
+    t.string "word"
+    t.string "hit_ids"
+  end
+
+  add_index "content_indices", ["word"], :name => "index_content_indices_on_word"
 
   create_table "notes", :force => true do |t|
     t.text     "content"
