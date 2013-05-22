@@ -14,6 +14,9 @@ class NotesController < ApplicationController
       when params[:like]
         @notes,@categories = Note.search(word,:like)
         Search.add(word,'like')
+      when params[:index]
+        @notes,@categories = Note.search(word,:index)
+        Search.add(word,'index')
       else
         @notes,@categories = Note.search(word)
         Search.add(word,'search')
@@ -46,7 +49,8 @@ class NotesController < ApplicationController
     names << "\n##{note.id}"
 
     categories = Category.bulk_create(note,names)
-    
+    ContentIndex.add_note(note)
+
     Operation.create!(:operation=>'create',:content=>names.split("\n").join(','))
     redirect_to notes_path(:word=>"##{note.id}")
   end
@@ -67,6 +71,9 @@ class NotesController < ApplicationController
     note.save
 
     Category.bulk_update(note,params[:names])
+
+    ContentIndex.del_note(note)
+    ContentIndex.add_note(note)
 
     Operation.create!(:operation=>'update',:content=>params[:names].split("\n").join(','))
     redirect_to notes_path(:word=>"##{note.id}")
