@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Time</th>
@@ -9,7 +9,7 @@
   <tbody>
     <%@operations.each do |e|%>
       <tr>
-        <td><%=e.created_at%></td>
+        <td><%=e.created_at.to_formatted_s(:db)%></td>
         <td><%=e.operation%></td>
         <td>
           <%if ['create','update'].include?(e.operation)%>
@@ -22,3 +22,4 @@
     <%end%>
   </tbody>
 </table>
+<%= paginate @operations %>
