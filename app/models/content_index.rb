@@ -18,15 +18,17 @@ class ContentIndex < ActiveRecord::Base
     words = []
     x = ''
     str.each_char do |c|
-      if ('a'..'z').include?(c) || ('A'..'Z').include?(c)
+      case c
+      when 'a'..'z','A'..'Z'
         x << c
-      else
-        words << x if !x.blank?
-        x = ''
+        next
       end
+      
+      words << x if !x.blank? && !words.include?(x)
+      x = ''
     end
+    words << x if !x.blank? && !words.include?(x)
 
-    words << x if !x.blank?
     return words
   end
 end

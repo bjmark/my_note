@@ -1,5 +1,10 @@
-ContentIndex.delete_all
+require 'benchmark'
 
-Note.all.each do|t|
-  ContentIndex.add_note(t)
+ContentIndex.delete_all
+Benchmark.bm do |x|
+  x.report do
+    Note.all.each do|t|
+      ContentIndex.add_note(t)
+    end
+  end
 end

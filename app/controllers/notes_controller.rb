@@ -36,6 +36,7 @@ class NotesController < ApplicationController
   def new
     @path = notes_path
     @method = 'post'
+    @note = Note.new
     @content = Note.where(:id=>params[:id]).first.try(:content)
     @names = []
   end
@@ -72,8 +73,10 @@ class NotesController < ApplicationController
 
     Category.bulk_update(note,params[:names])
 
-    ContentIndex.del_note(note)
-    ContentIndex.add_note(note)
+    unless params['no_reindex'] #do not rebuild index
+      ContentIndex.del_note(note)
+      ContentIndex.add_note(note)
+    end
 
     Operation.create!(:operation=>'update',:content=>params[:names].split("\n").join(','))
     redirect_to notes_path(:word=>"##{note.id}")
