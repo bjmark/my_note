@@ -1,3 +1,9 @@
+<p>
+Operation : 
+<%@op_filter.each do |k,v|%>
+  <%=link_to k,operations_path(:op=>k),(v ? {:class=>'active'},{})%>
+<%end%>
+</p>
 <table class="table table-bordered">
   <thead>
     <tr>
