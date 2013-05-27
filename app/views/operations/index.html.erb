@@ -1,7 +1,16 @@
-<p>
-Operation : 
-<%@op_filter.each do |k,v|%>
-  <%=link_to k,operations_path(:op=>k),(v ? {:class=>'active'},{})%>
+<%=form_tag operations_path, :method=>'get' do%>
+  Operation : 
+  <%@op_filter.each do |k,v|%>
+    <%=radio_button_tag 'operation',k,v%>
+    <%=k%>&nbsp;&nbsp;
+  <%end%>
+  <br/>
+  Date :
+  <%=text_field_tag 'bdate',params[:bdate]%>
+  to
+  <%=text_field_tag 'edate',params[:edate]%>
+  <br/>
+  <%=submit_tag 'Search'%>
 <%end%>
 </p>
 <table class="table table-bordered">
