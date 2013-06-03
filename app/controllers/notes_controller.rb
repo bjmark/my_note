@@ -8,18 +8,13 @@ class NotesController < ApplicationController
     @searches = Search.order("id desc").limit(20)
     return if word.blank?
 
-    case 
-    when params[:like]
-      @notes,@categories = Note.search(word,:like)
-      Search.add(word,'like')
-    when params[:index]
-      @notes,@categories = Note.search(word,:index)
-      Search.add(word,'index')
-    else
-      @notes,@categories = Note.search(word)
-      Search.add(word,'search')
-    end
+    search_kind = %w(search like index).find{|x| params[x] } || 'search'
+
+    @notes,@categories = Note.search(word,search_kind)
+    Search.add(word,search_kind)
+    
     @notes = @notes.page(params[:page]).per(3)
+    
     @textiles = @notes.collect do |e|
       s = e.content.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
         code = CodeRay.scan($3, $2).div(:css => :class)
