@@ -10,25 +10,28 @@
   <span style="padding-left:30px;"><a href="/notes/new">New</a></span>
 <%end%>
 
-<div class="searches">
-  <%=render 'names',:searches=>@categories,:name=>'name'%>
-</div>
-
-<%@notes.each do |e|%>
-  <hr>
-  <%n,g = e %>
+<%unless @categories.blank?%>
   <div class="searches">
-    <%=render 'names',:searches=>n.categories,:name=>'name'%>
-  </div>
-
-  <div class="note">
-    <%=raw g%>
-  </div>
-  
-  <div>
-    <%=link_to 'Edit', edit_note_path(n)%>
-    <%=link_to 'New-this', new_note_path(:id=>n.id)%>
+    <%=render 'names',:searches=>@categories,:name=>'name'%>
   </div>
 <%end%>
+
+<%unless @notes.blank?%>
+  <%@notes.each_with_index do |e,i|%>
+    <hr>
+    <div class="searches">
+      <%=render 'names',:searches=>e.categories,:name=>'name'%>
+    </div>
+
+    <div class="note">
+      <%=raw @textiles[i]%>
+    </div>
+
+    <div>
+      <%=link_to 'Edit', edit_note_path(e)%>
+      <%=link_to 'New-this', new_note_path(:id=>e.id)%>
+    </div>
+  <%end%>
+<%end%>
 <br/>
-<%=paginate @notes %>
+<%=paginate @notes unless @notes.blank?%>
