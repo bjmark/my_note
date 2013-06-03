@@ -21,10 +21,11 @@ class NotesController < ApplicationController
     end
     @notes = @notes.page(params[:page]).per(3)
     @textiles = @notes.collect do |e|
-      e.content.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
+      s = e.content.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
         code = CodeRay.scan($3, $2).div(:css => :class)
         "<notextile>#{code}</notextile>"
       end
+      RedCloth.new(s).to_html
     end
   end
 
