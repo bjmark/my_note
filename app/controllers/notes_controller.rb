@@ -38,7 +38,7 @@ class NotesController < ApplicationController
 
     names = params[:names]
     names << "\n#{Date.today}"
-    names << "\n##{note.id}"
+    names << "\n#{note.id}"
 
     categories = Category.bulk_create(note,names)
     ContentIndex.add_note(note)
