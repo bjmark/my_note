@@ -28,7 +28,7 @@ class NotesController < ApplicationController
     @path = notes_path
     @method = 'post'
     @note = Note.new
-    @content = Note.where(:id=>params[:id]).first.try(:content)
+    @content = ''
     @names = []
   end
 
