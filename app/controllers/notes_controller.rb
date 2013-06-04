@@ -13,7 +13,7 @@ class NotesController < ApplicationController
     @notes,@categories = Note.search(word,search_kind)
     Search.add(word,search_kind)
     
-    @notes = @notes.page(params[:page]).per(3)
+    @notes = @notes.order('id desc').page(params[:page]).per(3)
     
     @textiles = @notes.collect do |e|
       s = e.content.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
