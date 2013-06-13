@@ -41,7 +41,15 @@ class NotesController < ApplicationController
     names << "\n#{note.id}"
 
     categories = Category.bulk_create(note,names)
-    ContentIndex.add_note(note)
+    
+    job = {
+      'name' => 'build_content_index',
+      'note_id' => note.id,
+      'content' => note.content
+    }
+    BackgroundJob.create!(:job=>job)
+
+    #ContentIndex.add_note(note)
 
     Operation.create!(:operation=>'create',:content=>names.split("\n").join(','))
     redirect_to notes_path(:word=>"##{note.id}")
