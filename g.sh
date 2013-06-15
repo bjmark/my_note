@@ -3,7 +3,7 @@
 #rails g model category
 #rails g model categories_2_notes
 #rake db:schema:dump
-#RAILS_ENV=test rake db:schema:load
+RAILS_ENV=test rake db:schema:load
 #rails g integration_test search
 #rails g controller notes 
 
@@ -13,3 +13,4 @@
 
 #rails g migration add_path_to_search 
 #rails g model content_index
+#rails g model background_job
